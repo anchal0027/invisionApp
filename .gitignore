@@ -1,0 +1,8 @@
+app/bower_components
+/bower_components
+/.eslintric.js
+/bower.json
+/package.json
+/README.md
+/node_modules
+/.eslintignore
