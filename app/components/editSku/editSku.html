@@ -1,0 +1,107 @@
+<div class="col-md-12 skubckground">
+   <div class="col-md-12  margin skuleftmgn">
+      <div class="minus"> </div>
+      <div class="minus"></div>
+      <div class="minus"></div>
+      <div class="skutextstyle">EDIT SKU :</div>
+   </div>
+   <div class="col-md-12 leftmargin1">
+      <form name="form" ng-submit="editSkuCtrl.update(editSkuCtrl.sku)" novalidate>
+         <div style="margin-top: 20px;  background-color:#FCFCFC;">
+            <div class="subHdng color">
+               EDIT  SKU
+            </div>
+            <br>
+            <div class="col-md-12 skuleftmgn" style="margin-bottom:2%">
+               <div  ng-show="editSkuCtrl.errmsg" class="alert alert-danger">
+                  <span>{{editSkuCtrl.errmsg}}</span>
+               </div>
+               <div class="col-md-6">
+                  <div class="row">
+                     <div class="col-md-4">
+                        <label class="labelstyle" >Brand Name :</label>
+                     </div>
+                     <div class="col-md-6  col-md-offset-1">
+                        <div class="form-group" ng-class= "{true: 'has-error'} [submitted && form.dropdown.$invalid]">
+                           <select name="dropdown"  class="form-control dropdown5" style="background-color: rgb(244, 244, 244);" ng-model="editSkuCtrl.sku.brand_id" ng-change="editSkuCtrl.change()" required>
+                              <option value="" ng-selected="selected">Select Brand</option>
+                              <option ng-repeat="x in editSkuCtrl.dropdownData" ng-value="x.id" class="option">
+                                 {{x.value}}
+                              </option>
+                           </select>
+                           <span ng-show="submitted && form.dropdown.$error.required" class="help-block">Brand is Required</span>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="form-group" ng-class="{true: 'has-error'} [submitted && form.p_name.$invalid]">
+                     <label  class="labelstyle">Product Name (Name) :</label>
+                     <input type="text" class="form-control inputstyle" ng-model="editSkuCtrl.sku.productname" name="p_name" ng-change="editSkuCtrl.change()" required>
+                     <span ng-show="submitted && form.p_name.$error.required" class="help-block">Product Name is required</span>
+                  </div>
+                  <div class="form-group" ng-class="{true:'has-error'}[submitted && form.bat_id.$invalid]">
+                     <label  class="labelstyle" style="margin-top:6%;"> BAT ID(as per your sales data)</label>
+                     <input type="text" class="form-control inputstyle" ng-model="editSkuCtrl.sku.bat_id"  name="bat_id"  ng-change="editSkuCtrl.change()" required>
+                     <span ng-show="submitted && form.bat_id.$error.required" class="help-block">Bat ID  is required</span>
+                  </div>
+                  <label  class="labelstyle">Is SKU part of MAX Rewards</label>
+                  <md-radio-group ng-model="editSkuCtrl.sku.skumax" class="md-primary">
+                     <div class="col-md-10">
+                        <div class="col-md-3">
+                           <md-radio-button ng-value="true">
+                              Yes
+                           </md-radio-button>
+                        </div>
+                        <div class="col-md-3">
+                           <md-radio-button ng-value="false">
+                              No
+                           </md-radio-button>
+                        </div>
+                     </div>
+                  </md-radio-group>
+               </div>
+               <div class="col-md-6 shift">
+                  <label class="labelstyle1">From Date</label>
+                  <div class="row">
+                     <div class="col-md-6">
+                        <div class="form-group" ng-class="{true: 'has-error'}[submitted && form.date.$invalid]">
+                           <div class="input-group date"><input type="date" name="date" class="form-control" placeholder="DD-MM-YYYY" ng-model="editSkuCtrl.sku.fromdate">
+                              <span class="input-group-addon"><span class="glyphicon glyphicon-calendar glypsize" style="color: rgb(31, 138, 253);"></span></span>
+                           </div>
+                           <span ng-show="submitted && form.date.$error.required" class="help-block">Date  is required</span>
+                        </div>
+                     </div>
+                     <div class="col-md-6">
+                        <div class="form-group" >
+                           <div class="input-group date"><input type="time" name="time" ng-model="editSkuCtrl.sku.fromdate" step='1' min="00:00:00" max="20:00:00" class="form-control" placeholder="hh:mm:ss">
+                              <span class="input-group-addon"><span style="color: rgb(31, 138, 253); font-size:10px;">AM</span></span>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="col-md-11">
+                     <p class="parastyle">Outlets will be awarded points for purchasing the product from the date mentioned above.</p>
+                  </div>
+                  <div class="form-group"  ng-class="{true: 'has-error'}[submitted && form.cartoon.$invalid]">
+                     <label  class="labelstyle1" style="margin-top:4%;"> Base Points (awarded without any promotions)</label>
+                     <div class="row">
+                        <div class="col-md-3">
+                           <h5 class="headingstyle">1 Carton = </h5>
+                        </div>
+                        <div class="col-md-9">
+                           <input type="text" class="form-control inputstyle"  style="width:90%" ng-model="editSkuCtrl.sku.basepoint" name="cartoon" ng-change="editSkuCtrl.change()" required>
+                           <span ng-show="submitted && form.cartoon.$error.required" class="help-block">Carton  is required</span>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="col-md-12">
+                  <div class="col-md-6 col-md-offset-3   pull-right" style="margin-top:9%; padding-left:11%;">
+                     <div class="col-md-6"> <input type="button" class="btn btn-default btna" value="CANCEL" ng-click="editSkuCtrl.back()" ></div>
+                     <div class="col-md-6"><input  type="submit" class="btn btn-primary btns" value="ADD/SAVE"  ng-click="submitted=true"></div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </form>
+   </div>
+</div>
